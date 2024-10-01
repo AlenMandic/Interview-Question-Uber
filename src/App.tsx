@@ -38,8 +38,7 @@ export default function App() {
 
     // Once every shape is activated, we will reverse the sequence and de-activate them after a delay.
     if (sequence.size === amountOfShapes) {
-      const arrayFromSet = Array.from(sequence).reverse();
-      setSequence(sequenceSet); // reset set back to empty default Set.
+      let arrayFromSet = Array.from(sequence).reverse();
 
       // We will schedule incrementing setTimeouts to de-select our shapes, every timeout will be 500ms more delayed.
       for (let i = 0; i < arrayFromSet.length; i++) {
@@ -47,6 +46,8 @@ export default function App() {
           arrayFromSet[i].classList.remove("sequence-active");
         }, 800 * i);
       }
+
+      setSequence(new Set()); // reset set back to empty default Set.
     }
   }
 
